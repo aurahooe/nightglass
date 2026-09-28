@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Nightglass</title>
+  <meta name="description" content="A small press that turns over every hour." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <div class="grain" aria-hidden="true"></div>
+  <header class="mast">
+    <a class="mark" href="#front">Nightglass</a>
+    <nav>
+      <button data-view="front">The hour</button>
+      <button data-view="yard">Yard</button>
+      <button data-view="desk">Desk</button>
+    </nav>
+    <div class="auth-slot" id="authSlot"></div>
+  </header>
+
+  <main>
+    <section id="view-front" class="view on">
+      <p class="kicker" id="hourStamp">this hour</p>
+      <h1 class="display" id="editorial">Loading the hour…</h1>
+      <article class="feature-card" id="featureCard" hidden>
+        <p class="meta" id="featureMeta"></p>
+        <h2 id="featureTitle"></h2>
+        <p id="featureBody"></p>
+      </article>
+      <p class="lede" id="emptyHint">Public notes land here. Private ones stay in your desk.</p>
+    </section>
+
+    <section id="view-yard" class="view">
+      <p class="kicker">the yard</p>
+      <h2 class="display small">What people marked public</h2>
+      <div id="yard" class="stack"></div>
+    </section>
+
+    <section id="view-desk" class="view">
+      <p class="kicker">your desk</p>
+      <h2 class="display small">Write, then decide who sees it</h2>
+      <form id="pieceForm" class="sheet" hidden>
+        <input name="title" maxlength="80" placeholder="A short title, or leave blank" />
+        <textarea name="body" required rows="7" placeholder="Something you would leave on a kitchen table."></textarea>
+        <label class="check"><input type="checkbox" name="is_public" /> Mark public — it can appear in the yard and as the hour</label>
+        <button type="submit">Keep this</button>
+      </form>
+      <p id="deskGate" class="sheet">Sign in to keep notes. Email magic link — no password to invent.</p>
+      <div id="mine" class="stack"></div>
+    </section>
+  </main>
+
+  <aside id="gate" class="gate" hidden>
+    <form id="authForm">
+      <p class="kicker">enter</p>
+      <h2>Leave an address. We’ll send a door.</h2>
+      <input type="email" name="email" required placeholder="you@somewhere" />
+      <button type="submit">Send link</button>
+      <p class="fine" id="authMsg"></p>
+    </form>
+  </aside>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="./app.js"></script>
+</body>
+</html>
